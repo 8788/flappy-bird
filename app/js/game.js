@@ -220,17 +220,27 @@
         },
         addEvent: function () {
             var that = this;
-            document.onkeydown = function (ev) {
+            util.bindEvent(document, 'keydown', function (ev) {
                 var e = ev || event;
-                if (e.keyCode === 32) {
+                if (e.keyCode === 32 && status !== 'over') {
                     that.paly();
                     audio.fly();
                 }
-            };
+            });
 
-            restart.onclick = function () {
+            util.bindEvent(document, 'touchstart', function () {
+                if (status !== 'over') {
+                    that.paly();
+                    audio.fly();
+                }
+            });
+
+            util.bindEvent(restart, 'click', function () {
                 that.reset();
-            };
+            });
+            util.bindEvent(restart, 'touchstart', function () {
+                that.reset();
+            });
         },
         paly: function () {
             if (status === 'start') {
@@ -262,7 +272,7 @@
             audio.start();
         },
         over: function () {
-            document.onkeydown = null;
+            status = 'over';
             lawn.stop();
             pillar.stop();
             bird.died();
