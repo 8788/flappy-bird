@@ -179,16 +179,16 @@
                 util.animate(this.ele, {
                     bottom: 0
                 }, {
-                    time: 500,
-                    type: 'easeIn'
+                    duration: 500,
+                    easing: 'easeIn'
                 });           
             }
     
             util.animate(over, {
                 top: 140
             }, {
-                time: 500,
-                type: 'buffer'
+                duration: 500,
+                type: 'easeInOut'
             });
 
             this.rotate(90);       
@@ -254,7 +254,7 @@
             util.animate(ready, {
                 opacity: 0
             }, {
-                time: 500
+                duration: 500
             });
         },
         reset: function () {
