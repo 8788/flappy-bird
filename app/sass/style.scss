@@ -15,10 +15,12 @@ body {
 
 .game {
 	overflow: hidden;
-	position: relative;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 	width: $width;
 	height: $height;
-	margin: 30px auto 0;
+	margin: -290px 0 0 -180px;
 	background-color: #DDD894;
 }
 
