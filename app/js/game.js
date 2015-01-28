@@ -4,6 +4,7 @@
  */
 
 (function (window, document, undefined) {
+    'use strict';
     
     var main = document.getElementById('main');
     var score = document.getElementById('score');
@@ -146,7 +147,7 @@
             var v0 = Math.sqrt(2 * that.g * that.jumpHeight);   // v0*v0 = 2gh
             var old = parseInt(ele.style.bottom, 10);
             var maxBottom = main.offsetHeight - ele.offsetHeight;
-            if (old >= maxBottom) return;
+            if (old >= maxBottom) { return;}
             clearInterval(ele.timer);
             ele.timer = setInterval(function () {
                 t += 0.9;
