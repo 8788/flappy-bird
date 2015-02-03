@@ -2,35 +2,44 @@ module.exports = function(grunt) {
     'use strict';
     
     var config = {
-        source: 'app/',         // 源码目录
-        deploy: 'deploy/'       // 发布目录
+        src: 'app/',
+        dist: 'deploy/'
     };
 
-    // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    require('time-grunt')(grunt);
 
     grunt.initConfig({
+
         pkg: grunt.file.readJSON('package.json'),
+
+        config: config,
+
+        clean: {
+            main: {
+                src: config.dist
+            }
+        },
 
         copy: {
             html: {
                 expand: true,
-                cwd: config.source,
+                cwd: config.src,
                 src: '*.html',
-                dest: config.deploy
+                dest: config.dist
             },
             img: {
                 expand: true,
-                cwd: config.source + 'img/',
+                cwd: config.src + 'img/',
                 src: '**',
-                dest: config.deploy + 'img/'
+                dest: config.dist + 'img/'
             }
         },
 
         compass: {
             main: {
                 options: {
-                    basePath: config.source,
+                    basePath: config.src,
                     sassDir: 'sass',
                     cssDir: 'css',
                     imagesDir: 'img',
@@ -46,37 +55,37 @@ module.exports = function(grunt) {
 
         cssmin: {
             main: {
-                src: [config.source + 'css/*.css'],
-                dest: config.deploy + 'css/style.css'
+                src: [config.src + 'css/*.css'],
+                dest: config.dist + 'css/style.css'
             }
         },
 
         imagemin: {
             main: {
                 expand: true,
-                cwd: config.source + 'img',
+                cwd: config.src + 'img',
                 src: '**/*.{png,jpg,jpeg,gif}',
-                dest: config.deploy + 'img'
+                dest: config.dist + 'img'
             }
         },
 
         uglify: {
             main: {
-                src: [config.source + 'js/*.js'],
-                dest: config.deploy + 'js/script.js'
+                src: [config.src + 'js/*.js'],
+                dest: config.dist + 'js/script.js'
             }
         },
 
         usemin: {
-            html: config.deploy + '*.html',
+            html: config.dist + '*.html',
             options: {
-                dest: config.deploy
+                dest: config.dist
             }
         },
 
         watch: {
             main: {
-                files: [config.source + 'sass/**'],
+                files: [config.src + 'sass/**'],
                 tasks: ['compass', 'build']
             }
         }
