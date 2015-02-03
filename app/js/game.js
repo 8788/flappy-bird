@@ -1,11 +1,6 @@
-/**
- * @fileOverview flappy bird
- * @authors @Bubblins(http://weibo.com/607768123)
- */
-
-(function (window, document, undefined) {
+;(function (window, document, undefined) {
     'use strict';
-    
+
     var main = document.getElementById('main');
     var score = document.getElementById('score');
     var ready = document.getElementById('ready');
@@ -34,7 +29,7 @@
                     ele.style.left = 0;
                 }
                 ele.style.left = ele.offsetLeft - speed + 'px';
-            }, 30);            
+            }, 30);
         },
         stop: function () {
             clearInterval(this.ele.timer);
@@ -47,8 +42,8 @@
             var res = '';
             for (var i = 0; i < 3; i++) {
                 var heights = this._randomPillarHeight();
-                res += '<div class="item" style="left: ' + pillarGap * i + 'px">' + 
-                    '<div class="item-up" style="height: ' + heights.up + 'px"></div>' + 
+                res += '<div class="item" style="left: ' + pillarGap * i + 'px">' +
+                    '<div class="item-up" style="height: ' + heights.up + 'px"></div>' +
                     '<div class="item-down" style="height: ' + heights.down + 'px"></div></div>';
             }
             this.ele.innerHTML = res;
@@ -91,7 +86,7 @@
             return {
                 up: upHeight,
                 down: downHeight
-            };            
+            };
         },
 
         // 设置柱子位置
@@ -126,7 +121,7 @@
                 h: item.children[1].offsetHeight
             };
 
-            return this._overlay(bird.x, bird.y, bird.w, bird.h, p1.x, p1.y, p1.w, p1.h) || 
+            return this._overlay(bird.x, bird.y, bird.w, bird.h, p1.x, p1.y, p1.w, p1.h) ||
                 this._overlay(bird.x, bird.y, bird.w, bird.h, p2.x, p2.y, p2.w, p2.h);
         }
     };
@@ -182,9 +177,9 @@
                 }, {
                     duration: 500,
                     easing: 'easeIn'
-                });           
+                });
             }
-    
+
             util.animate(over, {
                 top: 140
             }, {
@@ -192,7 +187,7 @@
                 type: 'easeInOut'
             });
 
-            this.rotate(90);       
+            this.rotate(90);
         }
     };
 
@@ -285,7 +280,7 @@
                 var best = localStorage.getItem('flappyBirdBestScore') || 0;
                 count >= best && (best = count);
                 panel.children[1].innerHTML = best;
-                localStorage.setItem('flappyBirdBestScore', best);        
+                localStorage.setItem('flappyBirdBestScore', best);
             } catch (e) {
                 panel.children[1].innerHTML = count;
             }

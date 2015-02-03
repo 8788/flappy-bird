@@ -1,8 +1,4 @@
 @charset "utf-8";
-/**
- * @fileOverview flappy bird
- * @authors @Bubblings
- */
 
 $width: 360px;
 $height: 580px;
@@ -136,7 +132,7 @@ body {
 		height: 100px;
 		background: url(../img/pillar.png) repeat-y center;
 	}
-	
+
 	.item-up {
 		top: 0;
 		&:after {
